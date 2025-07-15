@@ -1,0 +1,49 @@
+
+
+<h2>{{#str}} messageheading, local_more_notifications, {{coursename}} {{/str}}</h2>
+<h3>{{#str}} messagewikis, local_more_notifications {{/str}}</h3>
+<ul>
+    {{#wikis_list}}
+        <li>
+            <h4> {{#str}} messagewikiheading, local_more_notifications, {{wikiname}} {{/str}}</h4>
+            {{#subwikis_list}}
+                <h4>{{#str}} messagepages, local_more_notifications {{/str}}</h4>
+                <ul>
+                {{#pages_list}}
+                    <li>
+                    <h4> 
+                        <a href="{{{pagelink}}}"> {{#str}} messagepageheading, local_more_notifications, {{pagename}} {{/str}}</a>
+                    </h4>
+                        <ul>
+                            {{#users_list}}
+                                <li>   
+                                    <h4> {{#str}} messageuserheading, local_more_notifications, {{username}} {{/str}} </h4>
+                                    <h4> {{#str}} edits, local_more_notifications {{/str}} </h4>
+                                    {{#edits}}  
+                                        {{#created}}
+                                            <p>{{#str}} messagecreated, local_more_notifications{{/str}} </p>
+                                        {{/created}}
+                                            {{#edit_count}}
+                                                <p>{{#str}} messageeditcount, local_more_notifications, {{edit_count}} {{/str}} </p>
+                                            {{/edit_count}}
+                                    {{/edits}}
+                                    {{#commentscount}}
+                                        <h4> {{#str}} madecomments, local_more_notifications, {{commentscount}} {{/str}} </h4>
+                                    {{/commentscount}}
+                                    <ul>
+                                        {{#comments}}
+                                            <li>
+                                            {{{content}}}
+                                            </li>
+                                        {{/comments}}
+                                    </ul>
+                                </li>
+                            {{/users_list}}
+                        </ul>
+                    </li>
+                {{/pages_list}}
+                </ul>
+            {{/subwikis_list}}
+        </li>
+    {{/wikis_list}}
+</ul>

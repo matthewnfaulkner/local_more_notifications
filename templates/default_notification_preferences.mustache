@@ -1,0 +1,138 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template core_message/default_notification_preferences
+
+    This template will render the default notification preferences for admin settings.
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * All data attributes are required
+
+    Context variables required for this template:
+    * providers Message providers
+    * components Provider components
+    * processors Message processors
+    * preferences Saved preferences
+
+    Example context (json):
+    {
+        "processors": [
+            {
+                "displayname": "Web",
+                "name": "popup"
+            }
+        ],
+        "components": [
+            {
+                "displayname": "Assignment",
+                "name": "mod_assign",
+                "colspan": 3,
+                "providers": [
+                    {
+                        "name": "assign_notification",
+                        "component": "mod_assign",
+                        "displayname": "Assignment notifications",
+                        "enabledsetting": "mod_assign_assign_notification_disable",
+                        "enabledlabel": "Sending Assignment enabled status",
+                        "enabled": 1,
+                        "settings": [
+                            {
+                                "lockedsetting": "mod_assign_assign_notification_locked[popup]",
+                                "locked": 1,
+                                "lockedlabel": "Sending Assignment via Web locked status",
+                                "enabledsetting": "mod_assign_assign_notification_enabled[popup]",
+                                "enabled": 1,
+                                "enabledlabel": "Sending Assignment via Web enabled status"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}}
+<div class="preferences-page-container">
+    <p>{{#str}} wikinotificationpreferences_help, local_more_notifications {{/str}}</p>
+
+    <div class="preferences-container">
+        <table class="table table-hover preference-table">
+            <thead>
+                <tr>
+                    <th></th>
+                    {{#options}}
+                        <th data-messagetype-name="{{name}}">{{{displayname}}}</th>
+                    {{/options}}
+                </tr>
+            </thead>
+            <tbody>
+                {{#wholewiki}}
+                <tr class="defaultmessageoutputs">
+                    <td>{{{title}}}</td>
+                    {{#settings}}
+                        <td>
+                            <div data-preference="{{{enabledsetting}}}">
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox"
+                                        id="{{{enabledsetting}}}"
+                                        name="{{{enabledsetting}}}"
+                                        class="custom-control-input provider_enabled"
+                                        {{#enabled}}checked{{/enabled}}
+                                    >
+                                    <label for="{{{enabledsetting}}}" class="custom-control-label"
+                                        title="{{enabledlabel}}">
+                                        <span class="accesshide">{{enabledlabel}}</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </td>
+                    {{/settings}}
+                </tr>
+                {{/wholewiki}}
+                <th colspan="3">
+                        {{#str}} messagepages, local_more_notifications {{/str}}
+        
+                </th>
+                {{#pages}}
+                    <tr class="defaultmessageoutputs">
+                        <td>{{{title}}}</td>
+                        {{#settings}}
+                        <td>
+                            <div data-preference="{{{enabledsetting}}}">
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox"
+                                        id="{{{enabledsetting}}}"
+                                        name="{{{enabledsetting}}}"
+                                        class="custom-control-input provider_enabled"
+                                        {{#enabled}}checked{{/enabled}}
+                                    >
+                                    <label for="{{{enabledsetting}}}" class="custom-control-label"
+                                        title="{{enabledlabel}}">
+                                        <span class="accesshide">{{enabledlabel}}</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </td>
+                        {{/settings}}
+                    </tr>
+                {{/pages}}
+            </tbody>
+        </table>
+    </div>
+</div>
