@@ -25,10 +25,8 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['messageprovider:wikicomment'] = 'Comment';
-$string['messageprovider:wikicommentdigest'] = 'Digest';
-$string['messageprovider:wikiedit'] = 'Wiki Edit';
-$string['messageprovider:wikieditdigest'] = 'Wiki Edit Digest';
+$string['messageprovider:wikidigest'] = 'Wiki Digest';
+
 $string['pluginname'] = 'More Notifications';
 $string['processdigest'] = 'Process wiki notifications digest';
 $string['wikimessageoutputs'] = 'Update wiki subscriptions';
